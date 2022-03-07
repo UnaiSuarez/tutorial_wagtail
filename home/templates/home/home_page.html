@@ -1,15 +1,23 @@
-{% extends "base.html" %}
-{% load static %}
-{% load wagtailcore_tags %}
-
-{% block body_class %}template-homepage{% endblock %}
-
-{% block extra_css %}
-
-{% endblock extra_css %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% load wagtailcore_tags %} {% block body_class %}template-homepage{% endblock %} {% block extra_css %} {% endblock extra_css %} {% block content %}
+<h1>{{page.title}}</h1>
 <div class="container mt-5">
-{{page.body | richtext}}
+</div>
+<div class="container">
+    <h1 class="page-header">Noticias recientes</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-warning ">
+                <div class="panel-body">
+                    <div class="list-group">
+                        {% for noticia in noticias %}
+                        <a href="{% url 'noticia'%}?nombre={{noticia.title}}" class="list-group-item">
+                            <h3>{{noticia.title}}</h3>
+                            <p>{{noticia.resumen}}</p>
+                        </a> {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}

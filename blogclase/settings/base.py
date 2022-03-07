@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'blog',
     'pelis',
     'videojuegos',
+    'noticias',
+    'viajes',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',

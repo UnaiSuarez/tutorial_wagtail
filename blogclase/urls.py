@@ -6,10 +6,13 @@ from django.contrib import admin
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
-from home.models import ContactPage
+from blog.models import BlogIndexPage
+from home.models import ContactPage, HomePage
+from noticias.models import NoticiaIndexPage, NoticiasIndexPage
 from pelis.models import PelisIndexPage
 
 from search import views as search_views
+from viajes.models import ViajeIndexPage, ViajesIndexPage
 from videojuegos.models import VideojuegoIndexPage, VideojuegosIndexPage
 
 urlpatterns = [
@@ -39,7 +42,12 @@ urlpatterns = urlpatterns + [
     path("listado-pelis/", PelisIndexPage, name='pelis'),
     path("contacto/", ContactPage, name='contacto'),
     path("videojuegos/", VideojuegosIndexPage, name='videojuegos'),
-    path("videojuego/", VideojuegoIndexPage, name='videojuego')
+    path("videojuego/", VideojuegoIndexPage, name='videojuego'),
+    path("", HomePage, name='home'),
+    path("noticias/", NoticiasIndexPage, name='noticias'),
+    path("noticia/", NoticiaIndexPage, name='noticia'),
+    path("viajes/", ViajesIndexPage, name='viajes'),
+    path("viajes/viaje/", ViajeIndexPage, name='viaje'),
     
 
     # Alternatively, if you want Wagtail pages to be served from a subpath

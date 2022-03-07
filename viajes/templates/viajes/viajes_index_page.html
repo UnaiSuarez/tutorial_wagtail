@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% load wagtailcore_tags %} {% block body_class %}template-blogindexpage{% endblock %} {% block content %}
+<div class="container">
+    <h1>{{ page.title }}</h1>
+    <hr>
+    <hr>
+    <ul class="list-group">
+        {% for viaje in viajes %}
+        <li class="list-group-item"><a href="{% url 'viaje' %}?destino={{viaje.destino}}" style="text-decoration: none; color: black;">{{viaje.destino}}</a></li>
+        {% empty %}
+        <p>No hay posts todavía ... </p>
+        {% endfor %}
+    </ul>
+
+    {% if viajes.paginator.count > 1 %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% include "includes/pagination.html" with subpages=viajes %}
+            </div>
+        </div>
+    </div>
+    <script>
+    </script>
+    {% endif %}
+</div>
+{% endblock %}

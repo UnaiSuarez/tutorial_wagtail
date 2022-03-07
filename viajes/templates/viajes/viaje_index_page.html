@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% load wagtailcore_tags %} {% block body_class %}template-blogindexpage{% endblock %} {% block content %}{% block extra_css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+
+<style>
+    #mapa {
+        height: 300px;
+    }
+</style>
+
+{% endblock%}
+</style>
+<div class="container">
+    <h1>{{ page.title }}</h1>
+    {% for viaje in viajes %}
+
+    <h1>{{viaje.destino}}</h1>
+    {{viaje.descripcion}}
+    <div id='map' onload="cargarMapa()">
+    </div>
+    <script>
+        var map = L.map('map').setView([{
+            {
+                viaje.coordenadas
+            }
+        }], 13);
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+            maxZoom: 18
+        }).addTo(map);
+        L.control.scale().addTo(map);
+        L.marker([{
+            {
+                viaje.coordenadas
+            }
+        }], {
+            draggable: true
+        }).addTo(map);
+    </script>
+    {% endfor %}
+</div>
+{% endblock %}

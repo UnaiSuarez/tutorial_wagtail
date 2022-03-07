@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% load wagtailcore_tags %} {% block body_class %}template-blogindexpage{% endblock %} {% block content %}
+<div class="container">
+    <style>
+        img {
+            width: 500px;
+            height: 300px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        
+        a:hover {
+            color: black;
+        }
+    </style>
+    <h1>{{ page.title }}</h1>
+    {% for noticia in noticias %}
+    <a href="{% url 'noticia'%}?nombre={{noticia.title}}">
+        <h1>{{noticia.title}}</h1>
+        {{noticia.resumen}} <br>
+        <img src="{{noticia.imagen}}" alt=""></a> {% endfor %}
+
+</div>
+
+{% if noticias.paginator.count > 1 %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% include "includes/pagination.html" with subpages=noticias %}
+        </div>
+    </div>
+</div>
+<script>
+</script>
+{% endif %} {% endblock %}

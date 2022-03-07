@@ -20,7 +20,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <!-- Site Logo Here -->
-            <a class="navbar-brand" href="#"><img src="../../media/images/logoRobustiano.png" width="50px" alt=""></a>
+            <a class="navbar-brand" href="{% url 'home' %}">Inicio</a>
             <!-- Mobile Toggle Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMobileToggle" aria-controls="navbarMobileToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -31,47 +31,18 @@
                         <a class="nav-link" href="{% url 'pelis' %}">Peliculas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Noticias</a>
+                        <a class="nav-link" href="{% url 'noticias' %}">Noticias</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
                     </li>
-                    {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'videojuegos' %}">Mis juegos</a>
+                        <a class="nav-link" href="{% url 'videojuegos' %}">Videojuegos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Amigos</a>
+                        <a class="nav-link" href="{% url 'viajes' %}">Viajes</a>
                     </li>
-                    {% endif %}
                 </ul>
-
-                <!-- Right Side -->
-                {% if user.is_authenticated %}
-                <div class="btn-group float-end">
-                    <a href="#" style="width: 40%;" class="dropdown-toggle text-decoration-none text-light" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-circle"></i>
-                        <span>{{user.username}} 
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a href="#" class="dropdown-item"><i class="bi bi-gear-wide-connected"></i> Settings</a></li>
-                        <li><a href="#" class="dropdown-item"><i class="bi bi-gear-wide-connected"></i> Añadir saldo</a></li>
-                        {% if perms.tienda.add_tarjetaregalo %}
-                        <li><a href="#" class="dropdown-item"><i class="bi bi-gear-wide-connected"></i> Crear Tarjeta regalo</a></li>
-                        {% endif %}
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a href="#" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Salir</a></li>
-                    </ul>
-                </div>
-                {% else %}
-                <li>
-                    <a href="#">Login</a>
-                    <a href="#">Register</a>
-                </li>
-                {% endif %}
             </div>
         </div>
     </nav>
