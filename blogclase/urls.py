@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.conf import settings
 from django.urls import include, path
 from django.contrib import admin
@@ -5,8 +6,11 @@ from django.contrib import admin
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
+from home.models import ContactPage
+from pelis.models import PelisIndexPage
 
 from search import views as search_views
+from videojuegos.models import VideojuegoIndexPage, VideojuegosIndexPage
 
 urlpatterns = [
     path('django-admin/', admin.site.urls),
@@ -32,6 +36,11 @@ urlpatterns = urlpatterns + [
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
     path("", include(wagtail_urls)),
+    path("listado-pelis/", PelisIndexPage, name='pelis'),
+    path("contacto/", ContactPage, name='contacto'),
+    path("videojuegos/", VideojuegosIndexPage, name='videojuegos'),
+    path("videojuego/", VideojuegoIndexPage, name='videojuego')
+    
 
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:

@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% load wagtailcore_tags %} {% block body_class %}template-blogindexpage{% endblock %} {% block content %}
+<div class="container">
+    <h1>{{ page.title }}</h1>
+    <hr>
+    <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          Consolas
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            {% for consola in consolas %}
+            <li><a class="dropdown-item" href="?plataforma={{consola.nombre}}">{{consola.nombre}}</a></li>
+            {% endfor %}
+        </ul>
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Generos
+          </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            {% for genero in generos %}
+            <li><a class="dropdown-item" href="?plataforma={{genero.nombre}}">{{genero.nombre}}</a></li>
+            {% endfor %}
+        </ul>
+        <a class="btn btn-secondary " href="{% url 'videojuegos' %}" role="button" aria-expanded="false">
+            Todos
+          </a>
+    </div>
+    <hr>
+    <ul class="list-group">
+        {% for videojuego in videojuegos %}
+        <li class="list-group-item"><a href="{% url 'videojuego' %}?nombre={{videojuego.title}}" style="text-decoration: none; color: black;">{{videojuego.title}}</a></li>
+        {% empty %}
+        <p>No hay posts todavía ... </p>
+        {% endfor %}
+    </ul>
+
+    {% if videojuegos.paginator.count > 1 %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% include "includes/pagination.html" with subpages=videojuegos %}
+            </div>
+        </div>
+    </div>
+    <script>
+    </script>
+    {% endif %}
+</div>
+{% endblock %}
