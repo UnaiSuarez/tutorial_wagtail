@@ -42,10 +42,10 @@ urlpatterns = urlpatterns + [
     path("listado-pelis/", PelisIndexPage, name='pelis'),
     path("contacto/", ContactPage, name='contacto'),
     path("videojuegos/", VideojuegosIndexPage, name='videojuegos'),
-    path("videojuego/", VideojuegoIndexPage, name='videojuego'),
+    path("videojuegos/videojuego/", VideojuegoIndexPage, name='videojuego'),
     path("", HomePage, name='home'),
     path("noticias/", NoticiasIndexPage, name='noticias'),
-    path("noticia/", NoticiaIndexPage, name='noticia'),
+    path("noticias/noticia/", NoticiaIndexPage, name='noticia'),
     path("viajes/", ViajesIndexPage, name='viajes'),
     path("viajes/viaje/", ViajeIndexPage, name='viaje'),
     
